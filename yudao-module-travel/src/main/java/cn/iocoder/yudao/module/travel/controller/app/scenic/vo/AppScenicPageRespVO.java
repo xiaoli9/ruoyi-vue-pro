@@ -1,0 +1,16 @@
+package cn.iocoder.yudao.module.travel.controller.app.scenic.vo;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+
+@Schema(description = "app - 景区 Response VO")
+@Data
+public class AppScenicPageRespVO extends AppScenicBaseVO {
+
+    private String bgUrl;
+
+    private Boolean hasAr;
+
+    private Boolean isVip;
+
+}

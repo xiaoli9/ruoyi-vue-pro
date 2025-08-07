@@ -49,7 +49,7 @@ spring:
       primary: master
       datasource:
         master:
-          url: jdbc:mysql://127.0.0.1:3306/ruoyi-vue-pro?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true&rewriteBatchedStatements=true # MySQL Connector/J 8.X 连接的示例
+          url: jdbc:mysql://47.110.250.169:3306/xy_ar_travel?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true&rewriteBatchedStatements=true # MySQL Connector/J 8.X 连接的示例
           #          url: jdbc:mysql://127.0.0.1:3306/ruoyi-vue-pro?useSSL=true&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true # MySQL Connector/J 5.X 连接的示例
           #          url: jdbc:postgresql://127.0.0.1:5432/ruoyi-vue-pro # PostgreSQL 连接的示例
           #          url: jdbc:oracle:thin:@127.0.0.1:1521:xe # Oracle 连接的示例
@@ -57,8 +57,8 @@ spring:
           #          url: jdbc:dm://127.0.0.1:5236?schema=RUOYI_VUE_PRO # DM 连接的示例
           #          url: jdbc:kingbase8://127.0.0.1:54321/test  # 人大金仓 KingbaseES 连接的示例
           #          url: jdbc:postgresql://127.0.0.1:5432/postgres # OpenGauss 连接的示例
-          username: root
-          password: 123456
+          username: pea_test
+          password: "@0XiYu2019"
           #          username: sa # SQL Server 连接的示例
           #          password: Yudao@2024 # SQL Server 连接的示例
           #          username: SYSDBA # DM 连接的示例
@@ -67,9 +67,9 @@ spring:
           #          password: Yudao@2024 # OpenGauss 连接的示例
         slave: # 模拟从库，可根据自己需要修改
           lazy: true # 开启懒加载，保证启动速度
-          url: jdbc:mysql://127.0.0.1:3306/ruoyi-vue-pro?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&nullCatalogMeansCurrent=true
-          username: root
-          password: 123456
+          url: jdbc:mysql://47.110.250.169:3306/xy_ar_travel?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&nullCatalogMeansCurrent=true
+          username: pea_test
+          password: "@0XiYu2019"
 #        tdengine: # IoT 数据库（需要 IoT 物联网再开启噢！）
 #          url: jdbc:TAOS-RS://127.0.0.1:6041/ruoyi_vue_pro
 #          driver-class-name: com.taosdata.jdbc.rs.RestfulDriver
@@ -80,10 +80,10 @@ spring:
 
   # Redis 配置。Redisson 默认的配置足够使用，一般不需要进行调优
   redis:
-    host: 127.0.0.1 # 地址
+    host: 47.110.250.169 # 地址
     port: 6379 # 端口
-    database: 0 # 数据库索引
-#    password: dev # 密码，建议生产环境开启
+    database: 2 # 数据库索引
+    password: '@XiYu99' # 密码，建议生产环境开启
 
 --- #################### 定时任务相关配置 ####################
 
@@ -194,26 +194,16 @@ debug: false
 --- #################### 微信公众号、小程序相关配置 ####################
 wx:
   mp: # 公众号配置（必填），参见 https://github.com/Wechat-Group/WxJava/blob/develop/spring-boot-starters/wx-java-mp-spring-boot-starter/README.md 文档
-#    app-id: wx041349c6f39b268b # 测试号（牛希尧提供的）
-#    secret: 5abee519483bc9f8cb37ce280e814bd0
-#    app-id: wx5b23ba7a5589ecbb # 测试号（自己的）
-#    secret: 2a7b3b20c537e52e74afd395eb85f61f
-    app-id: wxf56b1542b9e85f8a # 测试号（Kongdy 提供的）
-    secret: 496379dcef1ba869e9234de8d598cfd3
+    app-id: wx91a0f33ad390105c # xy测试号（alex 提供的）
+    secret: 8350ae8631fedde70aff693e68bba2b7
     # 存储配置，解决 AccessToken 的跨节点的共享
     config-storage:
       type: RedisTemplate # 采用 RedisTemplate 操作 Redis，会自动从 Spring 中获取
       key-prefix: wx # Redis Key 的前缀
       http-client-type: HttpClient # 采用 HttpClient 请求微信公众号平台
   miniapp: # 小程序配置（必填），参见 https://github.com/Wechat-Group/WxJava/blob/develop/spring-boot-starters/wx-java-miniapp-spring-boot-starter/README.md 文档
-    #    appid: wx62056c0d5e8db250 # 测试号（牛希尧提供的）
-    #    secret: 333ae72f41552af1e998fe1f54e1584a
-#    appid: wx63c280fe3248a3e7 # wenhualian的接口测试号
-#    secret: 6f270509224a7ae1296bbf1c8cb97aed
-    appid: wxc4598c446f8a9cb3 # 测试号（Kongdy 提供的）
-    secret: 4a1a04e07f6a4a0751b39c3064a92c8b
-#    appid: wx66186af0759f47c9 # 测试号（puhui 提供的）
-#    secret: 3218bcbd112cbc614c7264ceb20144ac
+    appid: wx2ebad4a2258d2c61 # 测试号（Kongdy 提供的）
+    secret: a83875f34432f138159d8da02c3cb450
     config-storage:
       type: RedisTemplate # 采用 RedisTemplate 操作 Redis，会自动从 Spring 中获取
       key-prefix: wa # Redis Key 的前缀
@@ -228,9 +218,9 @@ yudao:
   security:
     mock-enable: true
   pay:
-    order-notify-url: https://yutou.mynatapp.cc/admin-api/pay/notify/order # 支付渠道的【支付】回调地址
-    refund-notify-url: https://yutou.mynatapp.cc/admin-api/pay/notify/refund # 支付渠道的【退款】回调地址
-    transfer-notify-url: https://yutou.mynatapp.cc/admin-api/pay/notify/transfer # 支付渠道的【转账】回调地址
+    order-notify-url: https://artravel.xyani.com/admin-api/pay/notify/order # 支付渠道的【支付】回调地址
+    refund-notify-url: https://artravel.xyani.com/admin-api/pay/notify/refund # 支付渠道的【退款】回调地址
+    transfer-notify-url: https://artravel.xyani.com/admin-api/pay/notify/transfer # 支付渠道的【转账】回调地址
   access-log: # 访问日志的配置项
     enable: false
   demo: false # 关闭演示模式
@@ -244,12 +234,12 @@ justauth:
   enabled: true
   type:
     DINGTALK: # 钉钉
-      client-id: dingvrnreaje3yqvzhxg
-      client-secret: i8E6iZyDvZj51JIb0tYsYfVQYOks9Cq1lgryEjFRqC79P3iJcrxEwT6Qk2QvLrLI
+      client-id: test
+      client-secret: test
       ignore-check-redirect-uri: true
     WECHAT_ENTERPRISE: # 企业微信
-      client-id: wwd411c69a39ad2e54
-      client-secret: 1wTb7hYxnpT2TUbIeHGXGo7T0odav1ic10mLdyyATOw
+      client-id: test
+      client-secret: test
       agent-id: 1000004
       ignore-check-redirect-uri: true
     # noinspection SpringBootApplicationYaml
